@@ -1,0 +1,37 @@
+<template>
+    <lightning-card title="Turdle, the Wordle AI">
+        <div class="slds-p-horizontal_medium">
+            <div class="slds-p-vertical_small">
+                <lightning-input label="answer" value={answer} onchange={handleAnswerChange}></lightning-input>
+            </div>
+            <div class="slds-p-vertical_small">
+                <lightning-button label="Guess" onclick={handleGuess} disabled={guessDisabled} variant="brand">
+                </lightning-button>
+            </div>
+            <template if:true={showGuesses}>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        Guesses:
+                        <div class="slds-p_vertical_small">
+                            <template for:each={guesses} for:item="guess">
+                                <div key={guess.count}>
+                                    {guess.count}. {guess.word}
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="slds-col">
+                        Turdle, the Wordle AI ({guessCount}/6)
+                        <div class="slds-p_vertical_small">
+                            <template for:each={guessesConcealed} for:item="guess">
+                                <div key={guess.count}>
+                                    {guess.word}
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
